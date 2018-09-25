@@ -4,12 +4,12 @@ import numpy as np
 import car_config
 import parts
 
-MY_CAR = '10'
-bluepill = parts.BluePill(**car_config.bluepill_configs[MY_CAR])
+my_car = car_config.my_car()
+bluepill = parts.BluePill(**car_config.bluepill_configs[my_car])
 
 timer = parts.Timer(frequency=20)
 cam = parts.PiCamera()
-web_stream = parts.WebStatus()
+web_status = parts.WebStatus()
 
 # add tub to save data
 inputs = ['user_angle', 'user_throttle', 'distance', 'image_array', 'timestamp']
@@ -33,8 +33,8 @@ try:
             is_recording = False
             print(timestamp, "Recording disabled")
         img = cam.get_image()
-        web_stream.set_image(img)
-        web_stream.set_car_status(car_status)
+        web_status.set_image(img)
+        web_status.set_car_status(car_status)
         if is_recording:
             tub.write(car_status.user_angle,
                     car_status.user_throttle,

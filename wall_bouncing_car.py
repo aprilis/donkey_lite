@@ -4,11 +4,10 @@ import time
 import car_config
 import parts
 
-MY_CAR = '10'
-bluepill = parts.BluePill(**car_config.bluepill_configs[MY_CAR])
+my_car = car_config.my_car()
+bluepill = parts.BluePill(**car_config.bluepill_configs[my_car])
 
 timer = parts.Timer(frequency=20)
-
 
 DIST_THRESHOLD = 750
 FORWARD_SPEED = 0.15
