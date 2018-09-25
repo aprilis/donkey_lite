@@ -31,6 +31,7 @@ class PiCamera(base.ThreadedPart):
         self.camera.resolution = resolution
         self.camera.framerate = framerate
         self.camera.rotation = 180
+        self.camera.awb_mode = 'fluorescent'
         self.rawCapture = picamera.array.PiRGBArray(self.camera, size=resolution)
         self.stream = self.camera.capture_continuous(self.rawCapture,
                                                      format="rgb",
